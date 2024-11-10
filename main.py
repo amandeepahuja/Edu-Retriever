@@ -12,8 +12,8 @@ index, chunk_map = initialize_faiss()
 # Endpoint for directly querying the RAG system
 @app.post("/query/")
 async def query_rag_system(user_query: str):
-    relevant_chunks = search_faiss(user_query, index, chunk_map)
-    return {"response": relevant_chunks}
+    enhanced_answer = search_faiss(user_query, index, chunk_map)
+    return {"response": enhanced_answer}
 
 # Endpoint for the smart agent
 @app.post("/agent/")

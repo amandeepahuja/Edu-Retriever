@@ -4,3 +4,5 @@ pdfplumber
 sentence-transformers
 faiss-cpu
 numpy
+transformers
+torch

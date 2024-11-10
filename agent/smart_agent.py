@@ -16,5 +16,5 @@ async def smart_agent(user_query: str, index, chunk_map):
             return {"response": "Sorry, I couldn't evaluate the expression."}
 
     # If neither greeting nor math, use RAG system
-    relevant_chunks = search_faiss(user_query, index, chunk_map)
-    return {"response": relevant_chunks}
+    enhanced_answer  = search_faiss(user_query, index, chunk_map)
+    return {"response": enhanced_answer }
