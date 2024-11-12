@@ -14,11 +14,6 @@ This project implements a **Retrieval-Augmented Generation (RAG)** system using 
 8. [Example Queries](#example-queries)
 9. [Additional Agent Actions](#additional-agent-actions)
 10. [Future Improvements](#future-improvements)
-11. [FAQ](#faq)
-12. [Troubleshooting](#troubleshooting)
-13. [Contributing](#contributing)
-14. [Acknowledgments](#acknowledgments)
-15. [License](#license)
 
 ## Overview
 The goal of this project is to demonstrate a RAG pipeline that combines **retrieval** and **generation**. Given a question, the system retrieves relevant information from a dataset (extracted text from NCERT PDFs) using FAISS, and then generates a coherent response using a pre-trained open-source language model (Flan-T5). This approach enables more accurate and contextually aware responses to questions on the dataset.
@@ -163,39 +158,3 @@ The smart agent can interpret the user’s intent and invoke different actions b
 - **Context Management**: Improve the agent’s ability to retrieve context-specific information dynamically.
 - **Enhanced UI with Streamlit**: Add features such as question history, confidence scores, and answer summaries.
 - **Caching Common Responses**: Store frequently asked questions and responses to speed up the response time.
-
-## FAQ
-
-**Q1: What is Retrieval-Augmented Generation (RAG)?**  
-**A:** RAG is a technique that combines information retrieval with natural language generation, enabling systems to pull in relevant data and then generate responses. It’s especially useful for question-answering and information-based applications.
-
-**Q2: Can I use a different LLM instead of Flan-T5?**  
-**A:** Yes, you can replace Flan-T5 with other transformer models available on Hugging Face, such as GPT-J or GPT-NeoX. You would need to modify the model loading and inference code accordingly.
-
-**Q3: Why use FAISS for retrieval?**  
-**A:** FAISS is optimized for fast, scalable similarity search, making it suitable for finding the most relevant text chunks in large datasets efficiently.
-
-## Troubleshooting
-
-- **Issue**: `OSError: [WinError 2] The system cannot find the file specified`  
-  **Solution**: Run the command prompt as an administrator or use the `--user` flag when installing packages.
-
-- **Issue**: `Error: Could not retrieve response.`  
-  **Solution**: Ensure that the FastAPI server is running, and verify the API URL and endpoint configuration.
-
-- **Issue**: Slow response times on Streamlit interface.  
-  **Solution**: Consider
-
- upgrading hardware resources (e.g., using a GPU) or optimizing the model by using a smaller variant of Flan-T5.
-
-## Contributing
-Contributions are welcome! Please fork the repository, make changes, and submit a pull request. For significant changes, please discuss them in an issue first.
-
-## Acknowledgments
-- **Hugging Face** for providing access to pre-trained language models.
-- **Facebook AI Research (FAIR)** for FAISS, a powerful tool for fast similarity search.
-- **NCERT** for providing the educational content used in this demonstration.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
