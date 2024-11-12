@@ -1,7 +1,5 @@
 
-
-
-# Edu-Retriever
+# RAG System with FAISS and Flan-T5
 
 This project implements a **Retrieval-Augmented Generation (RAG)** system using **FAISS** for similarity search and **Flan-T5** as the language model to generate detailed answers based on NCERT text data. The application is served via **FastAPI** and includes an interactive UI built with **Streamlit** to allow users to input questions and receive responses from the system.
 
@@ -14,12 +12,13 @@ This project implements a **Retrieval-Augmented Generation (RAG)** system using 
 6. [Setup Instructions](#setup-instructions)
 7. [Usage](#usage)
 8. [Example Queries](#example-queries)
-9. [Future Improvements](#future-improvements)
-10. [FAQ](#faq)
-11. [Troubleshooting](#troubleshooting)
-12. [Contributing](#contributing)
-13. [Acknowledgments](#acknowledgments)
-14. [License](#license)
+9. [Additional Agent Actions](#additional-agent-actions)
+10. [Future Improvements](#future-improvements)
+11. [FAQ](#faq)
+12. [Troubleshooting](#troubleshooting)
+13. [Contributing](#contributing)
+14. [Acknowledgments](#acknowledgments)
+15. [License](#license)
 
 ## Overview
 The goal of this project is to demonstrate a RAG pipeline that combines **retrieval** and **generation**. Given a question, the system retrieves relevant information from a dataset (extracted text from NCERT PDFs) using FAISS, and then generates a coherent response using a pre-trained open-source language model (Flan-T5). This approach enables more accurate and contextually aware responses to questions on the dataset.
@@ -27,6 +26,7 @@ The goal of this project is to demonstrate a RAG pipeline that combines **retrie
 ## Features
 - **Retrieval using FAISS**: Efficient vector-based similarity search to retrieve relevant chunks of information.
 - **Language Generation with Flan-T5**: Open-source language model for natural, coherent answer generation.
+- **Smart Agent with Custom Actions**: An intelligent agent that can perform different actions based on user intent.
 - **FastAPI Backend**: RESTful API to handle requests and interact with the RAG components.
 - **Streamlit Interface**: A user-friendly interface for querying the RAG system and displaying answers.
 
@@ -63,7 +63,8 @@ rag_system/
 2. **Vector Embedding**: The chunks are embedded using pre-trained models and stored in a FAISS index.
 3. **Query Handling**: A query from the user is processed, embedded, and compared to the stored vectors in FAISS to retrieve relevant text chunks.
 4. **Response Generation**: Retrieved text chunks are fed into Flan-T5 to generate a coherent response.
-5. **User Interface**: A Streamlit interface allows users to input questions and receive responses from the system, providing an accessible UI for testing.
+5. **Smart Agent Actions**: The agent interprets user intent and invokes different actions based on keywords in the query.
+6. **User Interface**: A Streamlit interface allows users to input questions and receive responses from the system, providing an accessible UI for testing.
 
 ## Setup Instructions
 
@@ -129,9 +130,37 @@ Here are a few example questions that can be asked based on the NCERT dataset:
 2. **"What is the difference between compression and rarefaction?"**
 3. **"Why can't sound travel in a vacuum?"**
 
+## Additional Agent Actions
+
+The smart agent can interpret the user’s intent and invoke different actions based on the query. Here are the available actions:
+
+1. **Knowledge Expansion Mode**:
+   - **Description**: Provides extended background or context on the topic.
+   - **Trigger Keywords**: `"learn more about"`, `"expand on"`
+   - **Example Query**: `"Learn more about photosynthesis"`
+   - **Expected Response**: `"Here’s some extended information on photosynthesis: [generated context from Flan-T5]"`
+
+2. **Quiz Generator Mode**:
+   - **Description**: Generates a set of quiz questions on the topic.
+   - **Trigger Keywords**: `"quiz me on"`, `"practice questions on"`
+   - **Example Query**: `"Quiz me on sound waves"`
+   - **Expected Response**: 
+     ```
+     Here are some practice questions on sound waves:
+     1. What is sound?
+     2. Explain the concept of rarefaction.
+     3. What factors affect the speed of sound?
+     ```
+
+3. **Fun Fact Mode**:
+   - **Description**: Provides an interesting fact about a given topic.
+   - **Trigger Keywords**: `"fun fact about"`, `"tell me something interesting about"`
+   - **Example Query**: `"Tell me a fun fact about black holes"`
+   - **Expected Response**: `"Did you know? Black holes can slow down time due to their intense gravity!"`
+
 ## Future Improvements
 - **Fine-tune the Language Model**: Customize the Flan-T5 model on the NCERT dataset for more specific responses.
-- **Chunk Selection Optimization**: Improve the selection of context chunks for more precise and relevant answers.
+- **Context Management**: Improve the agent’s ability to retrieve context-specific information dynamically.
 - **Enhanced UI with Streamlit**: Add features such as question history, confidence scores, and answer summaries.
 - **Caching Common Responses**: Store frequently asked questions and responses to speed up the response time.
 
@@ -155,7 +184,9 @@ Here are a few example questions that can be asked based on the NCERT dataset:
   **Solution**: Ensure that the FastAPI server is running, and verify the API URL and endpoint configuration.
 
 - **Issue**: Slow response times on Streamlit interface.  
-  **Solution**: Consider upgrading hardware resources (e.g., using a GPU) or optimizing the model by using a smaller variant of Flan-T5.
+  **Solution**: Consider
+
+ upgrading hardware resources (e.g., using a GPU) or optimizing the model by using a smaller variant of Flan-T5.
 
 ## Contributing
 Contributions are welcome! Please fork the repository, make changes, and submit a pull request. For significant changes, please discuss them in an issue first.
@@ -168,7 +199,3 @@ Contributions are welcome! Please fork the repository, make changes, and submit 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 ```
-
----
-
-This README file now includes additional sections covering **Technologies Used**, **Architecture Overview**, **FAQ**, **Troubleshooting**, and **Acknowledgments**. This structure ensures that your README is informative, organized, and accessible for users and contributors. Let me know if there’s anything else you’d like to add!
