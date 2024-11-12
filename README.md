@@ -1,5 +1,5 @@
 
-# RAG System with FAISS and Flan-T5
+# Edu-Retriever
 
 This project implements a **Retrieval-Augmented Generation (RAG)** system using **FAISS** for similarity search and **Flan-T5** as the language model to generate detailed answers based on NCERT text data. The application is served via **FastAPI** and includes an interactive UI built with **Streamlit** to allow users to input questions and receive responses from the system.
 
